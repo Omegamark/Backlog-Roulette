@@ -1,0 +1,24 @@
+.topBoxArt {
+  width: auto;
+  height: 40vh;
+  margin: auto;
+
+}
+
+.topSection {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.logo {
+  font-family: 'Ravi Prakash', cursive;
+}
+
+#fix-header {
+  position: fixed;
+}
+/*img{
+  width: 20px;
+  height: 20px;
+}*/
