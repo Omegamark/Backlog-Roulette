@@ -15,12 +15,12 @@ function textInput(e) {
     var $boxArt = $('#boxArt')
     $boxArt.html('')
 
-    var url = "https://galvanize-cors-proxy.herokuapp.com/https://www.giantbomb.com/api/"
+    var url = "https://www.giantbomb.com/api/"
     var key = "0e979a8506def0657887d61aac192b8cefd60eec"
+    var cors = "https://galvanize-cors-proxy.herokuapp.com/"
 
 
-
-    $.get(url + "search/?format=json&api_key=" + key + "&query=" + title, function(data) {
+    $.get(cors + url + "search/?format=json&api_key=" + key + "&query=" + title, function(data) {
 
 
 
@@ -28,10 +28,10 @@ function textInput(e) {
         var topBoxArt = data.results[0].image.medium_url;
         $boxArt.append(`<div><img src="` + topBoxArt + `"class="topBoxArt"></div>`)
         console.log(topBoxArt);
+        var gameArray = []
 
 
-
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 1; i++) {
 
             var gameImage = data.results[i].image.medium_url;
             var gameName = data.results[i].name;
@@ -46,26 +46,91 @@ function textInput(e) {
             </li>`);
 
             $gameList.append($listItem);
+            //*Push first item into a variable.
 
-
-
+            gameArray.push(data.results[i].api_detail_url)
+            console.log(gameArray);
+            var initialGame = data.results[0].api_detail_url
+            console.log("initial Game:", initialGame)
             console.log(data);
 
 
         }
-        var similarGames = [game.results.similarGames]
-        var gameId = 'data.results[0].api_detail_url'
+        var similarGames = []
+        var gameId = cors + data.results[0].api_detail_url
         $.get(gameId + `?format=json&api_key=` + key, function(game) {
-            for (var i = 0; i < game.results.similar_games.length; i++) {
-              similarGames.push(results[0])
+            console.log(game);
+            for (var j = 0; j < game.results.similar_games.length; j++) {
+              similarGames.push(game.results.similar_games[j])
+
+
+
+              // var $listItem = $(`<li class="collection-item avatar">
+              //     <img src="` + gameImage + `" alt="" class="circle">
+              //     <span class="title">` + gameName + `</span>
+              //     <p>` + gameDescription + `
+              //     </p>
+              //     <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
+              // </li>`);
               //Want to return 5 random results from this array
 
             }
+            // var randomGames = [];
+            // for (var k = 0; k < similarGames.length; k++) {
+            //   randomGames.push(similarGames[Math.floor(Math.random() * similarGames.length)]);
+            //
+            // }
+            var fiveRandomGames = [];
+            for (var l = 0; l < 5; l++) {
+              var randomGame = getUniqueRandomGame(similarGames, fiveRandomGames);
+              fiveRandomGames.push(randomGame);
+
+            }
+
+
+
+            console.log("randomgames:", fiveRandomGames);
+          //  console.log(randomGames);
+            console.log(similarGames);
+            console.log(gameId);
+
+            var randomGameImage = data.results[i].image.medium_url;
+            var randomGameName = data.results[i].name;
+            var randomGameDescription = data.results[i].deck;
+
+
+
+            for (var m = 0; m < fiveRandomGames.length; m++) {
+
+            //*Get all 5 games from the fiveRandomGames array, add the urls to a variable and concat with the li to append to the DOM.
+
+
+
+          }
+
+            $randomListItem = $(`<li class="collection-item avatar">
+                <img src="` + randomGameImage + `" alt="" class="circle">
+                <span class="title">` + randomGameName + `</span>
+                <p>` + randomGameDescription + `
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
+            </li>`);
 
         })
 
     })
 
 
+
+}
+
+
+function getUniqueRandomGame (games, randomGames) {
+  while (true) {
+    var randomGame = games[Math.floor(Math.random() * games.length)];
+    if (randomGames.indexOf(randomGame) == -1) {
+      return randomGame;
+    }
+  }
 
 }
