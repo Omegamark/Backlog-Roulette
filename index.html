@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
     <script src="app.js"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
@@ -23,72 +23,70 @@
 
 </head>
 
-<body class="BgImage">
+<body>
 
-    <header>
-
+    <header class="black">
+        <div class="black">
+            <nav>
+                <div class="nav-wrapper black">
+                    <a href="#!" class="brand-logo logo">Logo</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="sass.html">Wishlist</a></li>
+                        <li><a href="badges.html">Backlog</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
 
-      <section id="sideNavLeft">
-        <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
 
-
-<!-- Use any element to open the sidenav -->
-<span onclick="openNav()">open</span>
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-  ...
-</div>
-      </section>
-
-      <section>
-        <div id="mySidenavright" class="sidenavright">
-      <a href="javascript:void(0)" class="closebtnright" onclick="closeNav()">&times;</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-      </div>
-
-
-      <!-- Use any element to open the sidenav -->
-      <span onclick="openNav()">open</span>
-
-      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-      <div id="main">
-      ...
-      </div>
-      </section>
 
 
         <section>
-          <section id="boxArt" class="topSection">
+            <section id="boxArt" class="topSection">
 
 
 
-          </section>
+            </section>
             <form>
                 <div class="searchBox">
                     <label>Enter a game title:</label>
                     <input type="text" placeholder="Enter Title">
 
-                        <ul id='list' class="collection">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right"></i>
+                    </button>
 
-                            </ul>
-                        <button type="submit">Submit</button>
+                    <ul id='list' class="collection">
+
+                    </ul>
+
                 </div>
             </form>
         </section>
     </main>
+    <footer>
+        <div class="black">
+            <nav class="black">
+                <div class="nav-wrapper black">
+                    <a href="#!" class="brand-logo center logo">Logo</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="sass.html"></a>
+                        </li>
+                        <li>
+                            <a href="badges.html"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    </footer>
+
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
     <script src="jquery-3.1.1.min.js"></script>
 </body>

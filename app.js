@@ -10,17 +10,25 @@ function textInput(e) {
     e.preventDefault();
     var title = $('input').val();
 
+    var $gameList = $('#list')
+    $gameList.html('');
+    var $boxArt = $('#boxArt')
+    $boxArt.html('')
+
     var url = "https://galvanize-cors-proxy.herokuapp.com/https://www.giantbomb.com/api/"
     var key = "0e979a8506def0657887d61aac192b8cefd60eec"
+
+
+
     $.get(url + "search/?format=json&api_key=" + key + "&query=" + title, function(data) {
 
-        var $gameList = $('#list')
 
 
 
         var topBoxArt = data.results[0].image.medium_url;
-        $('#boxArt').append(`<div data-role="collapsible"><img src="` + topBoxArt + `"class="topBoxArt"></div>`)
+        $boxArt.append(`<div><img src="` + topBoxArt + `"class="topBoxArt"></div>`)
         console.log(topBoxArt);
+
 
 
         for (var i = 0; i < 5; i++) {
@@ -34,7 +42,7 @@ function textInput(e) {
                 <span class="title">` + gameName + `</span>
                 <p>` + gameDescription + `
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
             </li>`);
 
             $gameList.append($listItem);
@@ -45,24 +53,19 @@ function textInput(e) {
 
 
         }
+        var similarGames = [game.results.similarGames]
+        var gameId = 'data.results[0].api_detail_url'
+        $.get(gameId + `?format=json&api_key=` + key, function(game) {
+            for (var i = 0; i < game.results.similar_games.length; i++) {
+              similarGames.push(results[0])
+              //Want to return 5 random results from this array
+
+            }
+
+        })
 
     })
-}
-/* Set the width of the side navigation to 250px */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
 
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
 
-function openNav() {
-    document.getElementById("mySidenavright").style.width = "250px";
-}
 
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementById("mySidenavright").style.width = "0";
 }
