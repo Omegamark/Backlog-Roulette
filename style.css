@@ -11,6 +11,8 @@
   align-items: center;
   min-height: 20vh;
   background-image: url("http://lorempixel.com/400/200");
+  background-size: cover;
+  background-position: center;
   }
 
 .logo {

@@ -46,7 +46,7 @@ function textInput(e) {
             </li>`);
 
             $gameList.append($listItem);
-            //*Push first item into a variable.
+
 
 
             var initialGame = data.results[0].api_detail_url
@@ -89,26 +89,46 @@ function textInput(e) {
               fiveRandomGames.push(randomGame);
 
             }
-
-
-
+          //
+          //
+          //
             console.log("randomgames:", fiveRandomGames);
             console.log(similarGames);
             console.log(gameId);
-          //
-          //   var randomGameImage = data.results[i].image.medium_url;
-          //   var randomGameName = data.results[i].name;
-          //   var randomGameDescription = data.results[i].deck;
-          //
-          //
-          //
-          //   for (var m = 0; m < fiveRandomGames.length; m++) {
-
-
-            //*Get all 5 games from the fiveRandomGames array, add the urls to a variable and concat with the li to append to the DOM.
 
 
 
+
+            var fiveRandomGamesIndividual = [];
+            for (var m = 0; m < fiveRandomGames.length; m++) {
+              $.get(cors + fiveRandomGames[m].api_detail_url + `?format=json&api_key=` + key, function(random) {
+                fiveRandomGamesIndividual.push(random.results)
+
+                console.log("fiveRandom:", fiveRandomGamesIndividual);
+
+                var randomGameImage = random.results.image.medium_url;
+                var randomGameName = random.results.name;
+                var randomGameDescription = random.results.deck;
+
+              var $listItemRandom = $(`<li class="collection-item avatar">
+                   <img src="` + randomGameImage + `" alt="" class="circle">
+                   <span class="title">` + randomGameName + `</span>
+                   <p>` + randomGameDescription + `
+                   </p>
+                   <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
+              </li>`);
+
+              console.log(randomGameImage);
+              console.log(randomGameName);
+              console.log(randomGameDescription);
+
+              $gameList.append($listItemRandom);
+
+              })
+
+            // *Get all 5 games from the fiveRandomGames array, add the urls to a variable and concat with the li to append to the DOM.
+
+          }
 
 
             // $randomListItem = $(`<li class="collection-item avatar">
