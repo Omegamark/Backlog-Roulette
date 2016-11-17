@@ -31,11 +31,11 @@ function textInput(e) {
         var gameArray = []
 
 
-        for (var i = 0; i < 1; i++) {
 
-            var gameImage = data.results[i].image.medium_url;
-            var gameName = data.results[i].name;
-            var gameDescription = data.results[i].deck;
+
+            var gameImage = data.results[0].image.medium_url;
+            var gameName = data.results[0].name;
+            var gameDescription = data.results[0].deck;
 
             var $listItem = $(`<li class="collection-item avatar">
                 <img src="` + gameImage + `" alt="" class="circle">
@@ -48,15 +48,18 @@ function textInput(e) {
             $gameList.append($listItem);
             //*Push first item into a variable.
 
-            gameArray.push(data.results[i].api_detail_url)
-            console.log(gameArray);
+
             var initialGame = data.results[0].api_detail_url
             console.log("initial Game:", initialGame)
             console.log(data);
 
 
-        }
-        var similarGames = []
+
+
+
+//*Use this to get similar games urls
+
+        var similarGames = [];
         var gameId = cors + data.results[0].api_detail_url
         $.get(gameId + `?format=json&api_key=` + key, function(game) {
             console.log(game);
@@ -90,38 +93,40 @@ function textInput(e) {
 
 
             console.log("randomgames:", fiveRandomGames);
-          //  console.log(randomGames);
             console.log(similarGames);
             console.log(gameId);
+          //
+          //   var randomGameImage = data.results[i].image.medium_url;
+          //   var randomGameName = data.results[i].name;
+          //   var randomGameDescription = data.results[i].deck;
+          //
+          //
+          //
+          //   for (var m = 0; m < fiveRandomGames.length; m++) {
 
-            var randomGameImage = data.results[i].image.medium_url;
-            var randomGameName = data.results[i].name;
-            var randomGameDescription = data.results[i].deck;
-
-
-
-            for (var m = 0; m < fiveRandomGames.length; m++) {
 
             //*Get all 5 games from the fiveRandomGames array, add the urls to a variable and concat with the li to append to the DOM.
 
 
 
-          }
 
-            $randomListItem = $(`<li class="collection-item avatar">
-                <img src="` + randomGameImage + `" alt="" class="circle">
-                <span class="title">` + randomGameName + `</span>
-                <p>` + randomGameDescription + `
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
-            </li>`);
 
-        })
-
-    })
+            // $randomListItem = $(`<li class="collection-item avatar">
+            //     <img src="` + randomGameImage + `" alt="" class="circle">
+            //     <span class="title">` + randomGameName + `</span>
+            //     <p>` + randomGameDescription + `
+            //     </p>
+            //     <a href="#!" class="secondary-content"><i class="material-icons">Score</i></a>
+            // </li>`);
 
 
 
+
+
+
+
+})
+})
 }
 
 
