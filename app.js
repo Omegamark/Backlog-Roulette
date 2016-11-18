@@ -1,10 +1,13 @@
 // www.giantbomb.com/api/search/?format=json&api_key=0e979a8506def0657887d61aac192b8cefd60eec&query=river_city_ransom
 console.log("ok");
+
+
+
 $(document).ready(function() {
     //var title = $(input).val()
     $('form').submit(textInput)
 
-})
+});
 
 function textInput(e) {
     e.preventDefault();
@@ -22,7 +25,9 @@ function textInput(e) {
 
     $.get(cors + url + "search/?format=json&api_key=" + key + "&query=" + title, function(data) {
 
-
+      fiveRandomGamesIndividual = [];
+      var fiveRandomGamesIndividual = [];
+      console.log("Individual Games", fiveRandomGamesIndividual);
 
 
         var topBoxArt = data.results[0].image.medium_url;
@@ -84,8 +89,10 @@ function textInput(e) {
             //
             // }
             var fiveRandomGames = [];
+
             for (var l = 0; l < 5; l++) {
               var randomGame = getUniqueRandomGame(similarGames, fiveRandomGames);
+
               fiveRandomGames.push(randomGame);
 
             }
@@ -99,7 +106,7 @@ function textInput(e) {
 
 
 
-            var fiveRandomGamesIndividual = [];
+
             for (var m = 0; m < fiveRandomGames.length; m++) {
               $.get(cors + fiveRandomGames[m].api_detail_url + `?format=json&api_key=` + key, function(random) {
                 fiveRandomGamesIndividual.push(random.results)
@@ -123,6 +130,37 @@ function textInput(e) {
               console.log(randomGameDescription);
 
               $gameList.append($listItemRandom);
+
+              $('canvas').html('')
+              $("#wheelButton").off()
+              if(fiveRandomGamesIndividual.length == 5) {
+                //*Wheel Initializer*//
+                var settings = {
+                  el: 'wheel', // Canvas id.
+                  members: [fiveRandomGamesIndividual[0].name, fiveRandomGamesIndividual[1].name, fiveRandomGamesIndividual[2].name, fiveRandomGamesIndividual[3].name, fiveRandomGamesIndividual[4].name], // Array of members.
+                  colors: ['#C7181D', '#FCB937', '#A1B836', '#371979', 'blue'], // Background color of each member.
+                  radius: 250 // wheel radius
+                };
+
+                // Create a wheel instance with settings.
+                var wheel = new Wheel(settings);
+
+                // Initialize the wheel.
+                wheel.init();
+
+                // Spin the wheel with a callback after it is done.
+                wheel.spin(function(member) {
+                  alert(member);
+                });
+
+                $("#wheelButton").on('click', function() {
+                  wheel.spin(function(member) {
+                    alert(member);
+                  });
+                })
+                //*Wheel Initializer*//
+
+              }
 
               })
 
@@ -148,8 +186,7 @@ function textInput(e) {
 })
 })
 }
-
-
+//*Comparing games to random games so titles don't repeat
 function getUniqueRandomGame (games, randomGames) {
   while (true) {
     var randomGame = games[Math.floor(Math.random() * games.length)];
@@ -159,3 +196,29 @@ function getUniqueRandomGame (games, randomGames) {
   }
 
 }
+
+// //*Wheel Initializer*//
+// var settings = {
+//   el: 'wheel', // Canvas id.
+//   members: [fiveRandomGamesIndividual[0], fiveRandomGamesIndividual[1], fiveRandomGamesIndividual[2], fiveRandomGamesIndividual[3], fiveRandomGamesIndividual[4]], // Array of members.
+//   colors: ['#C7181D', '#FCB937', '#A1B836', '#371979', 'blue'], // Background color of each member.
+//   radius: 250 // wheel radius
+// };
+//
+// // Create a wheel instance with settings.
+// var wheel = new Wheel(settings);
+//
+// // Initialize the wheel.
+// wheel.init();
+//
+// // Spin the wheel with a callback after it is done.
+// wheel.spin(function(member) {
+//   alert(member);
+// });
+//
+// document.getElementById("wheelButton").addEventListener('click', function() {
+//   wheel.spin(function(member) {
+//     alert(member);
+//   });
+// })
+// //*Wheel Initializer*//

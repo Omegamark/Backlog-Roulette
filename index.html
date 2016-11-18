@@ -10,9 +10,10 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
-    <script src="app.js"></script>
+
 
     <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+    <script src="wheel.js"></script>
 
     <link rel="stylesheet" href="style.css">
 
@@ -50,14 +51,27 @@
 
 
             </section>
+
+
+
+
             <form>
                 <div class="searchBox">
-                    <label>Enter a game title:</label>
+                    <label>The Next Game You Should Play ISSSS:</label>
                     <input type="text" placeholder="Enter Title">
 
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                      <i class="material-icons right"></i>
-                    </button>
+
+
+                    <section class="flexWheel">
+
+                      <canvas id="wheel"></canvas>
+                      <button id="wheelButton" class="btn waves-effect waves-light" type="submit" name="action">GO!!!
+                        <i class="material-icons right"></i>
+                      </button>
+
+                    </section>
+
+
 
                     <ul id='list' class="collection">
 
@@ -66,7 +80,7 @@
                 </div>
             </form>
         </section>
-        
+
     </main>
     <footer>
         <div class="black">
@@ -90,6 +104,7 @@
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
     <script src="jquery-3.1.1.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

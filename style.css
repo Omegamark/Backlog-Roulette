@@ -22,3 +22,15 @@
 .HF {
   background-color: #455a64
 }
+
+.flexWheel {
+  display: flex;
+  justify-content: center;
+
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
